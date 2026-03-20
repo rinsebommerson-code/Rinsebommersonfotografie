@@ -1,0 +1,156 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+
+const painPoints = [
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M9 14l3 3 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 0" opacity="0.3" />
+        <path d="M10 10l8 8M18 10l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    title: "Geen beelden die bij je niveau passen",
+    body:
+      "Je bent gegroeid — je tarieven, je klanten, je aanpak. Maar je foto's zijn nog van toen je net begon. Dat voelt niet meer goed, en je potentiële klanten voelen het ook.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="1" y="6" width="26" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M9 6V4a5 5 0 0110 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="14" cy="15" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M14 17.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    title: "Je weet niet wat je moet dragen, staan of uitstralen",
+    body:
+      "Styling, locatie, houding, licht — er zijn te veel keuzes. Je wil gewoon goede beelden, maar je weet niet waar je moet beginnen en hoe je jezelf voor de camera presenteert.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2L4 8v12l10 6 10-6V8L14 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M14 2v18M4 8l10 6 10-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "Een gewone fotoshoot voelt niet meer genoeg",
+    body:
+      "Twee uur in een studio, zeven dezelfde poses, geleverd als losstaande bestanden zonder strategie. Dat is niet wat je bedrijf nodig heeft. Jij hebt een compleet beeldsysteem nodig.",
+  },
+];
+
+export default function Problem() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section
+      ref={ref}
+      className="py-24 md:py-36"
+      style={{ backgroundColor: "var(--warm-white)" }}
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Opening */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl mb-20"
+        >
+          <p
+            className="text-xs font-medium tracking-[0.25em] uppercase mb-5"
+            style={{ color: "var(--gold)", fontFamily: "var(--font-dm-sans)" }}
+          >
+            Herkenbaar?
+          </p>
+          <h2
+            className="text-4xl md:text-5xl leading-tight mb-6"
+            style={{ fontFamily: "var(--font-playfair)", color: "var(--charcoal)" }}
+          >
+            Je bent goed in wat je doet. Maar je foto&apos;s{" "}
+            <em>vertellen dat verhaal nog niet.</em>
+          </h2>
+          <p
+            className="text-lg leading-relaxed"
+            style={{
+              color: "var(--charcoal-light)",
+              fontFamily: "var(--font-dm-sans)",
+              opacity: 0.8,
+            }}
+          >
+            Je omzet groeit, je klanten zijn tevreden, je expertise is er. Maar
+            wie jou online tegenkomt, ziet dat nog niet. De kloof tussen wie je
+            bent en hoe je overkomt — dat lost een Full Imagery Plan op.
+          </p>
+        </motion.div>
+
+        {/* Pain point cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {painPoints.map((point, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.7,
+                delay: 0.15 + i * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="p-8 border"
+              style={{
+                borderColor: "var(--beige)",
+                backgroundColor: "var(--cream)",
+              }}
+            >
+              <div
+                className="mb-5"
+                style={{ color: "var(--gold)" }}
+              >
+                {point.icon}
+              </div>
+              <h3
+                className="text-xl mb-4 leading-snug"
+                style={{
+                  fontFamily: "var(--font-playfair)",
+                  color: "var(--charcoal)",
+                }}
+              >
+                {point.title}
+              </h3>
+              <p
+                className="text-sm leading-relaxed"
+                style={{
+                  fontFamily: "var(--font-dm-sans)",
+                  color: "var(--charcoal-light)",
+                  opacity: 0.8,
+                }}
+              >
+                {point.body}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bridge line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-16 text-center text-lg font-medium"
+          style={{
+            fontFamily: "var(--font-playfair)",
+            color: "var(--charcoal)",
+            fontStyle: "italic",
+          }}
+        >
+          &ldquo;Jij bent de expert. Wij zorgen dat dat ook{" "}
+          <span style={{ color: "var(--gold)" }}>te zien</span> is.&rdquo;
+        </motion.p>
+      </div>
+    </section>
+  );
+}
