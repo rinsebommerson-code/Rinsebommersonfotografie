@@ -22,12 +22,21 @@ const testimonials = [
   },
   {
     quote:
-      "We liepen vast met ons team: niemand wou op de foto, niemand wist wat te dragen, en de beelden die we hadden zagen er niet professioneel uit. Na het Full Imagery Plan hebben we eindelijk een consistente visuele identiteit die past bij wie we zijn.",
+      "We liepen vast met ons team: niemand wou op de foto, niemand wist wat te dragen. Na het Full Imagery Plan hebben we eindelijk een consistente visuele identiteit die past bij wie we zijn.",
     name: "Sanne & Mark Visser",
     role: "Founders, Visser & Partners",
     metric: "Complete rebrand visuele identiteit",
     initials: "SV",
   },
+];
+
+// Five wide-format editorial photos shown as a strip above the testimonials
+const photoStrip = [
+  { aspect: "aspect-[4/5]",  gradient: "linear-gradient(160deg, #2C2518 0%, #1A1210 100%)", glow: "45% 28%" },
+  { aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #1E2830 0%, #111820 100%)", glow: "50% 32%" },
+  { aspect: "aspect-[4/5]",  gradient: "linear-gradient(160deg, #201C28 0%, #14101C 100%)", glow: "42% 25%" },
+  { aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #281E0A 0%, #1A1408 100%)", glow: "55% 30%" },
+  { aspect: "aspect-[4/5]",  gradient: "linear-gradient(160deg, #1A2020 0%, #101618 100%)", glow: "48% 27%" },
 ];
 
 export default function Testimonials() {
@@ -40,13 +49,44 @@ export default function Testimonials() {
       className="py-24 md:py-36"
       style={{ backgroundColor: "var(--warm-white)" }}
     >
+      {/* ── Full-bleed photo strip ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        className="mb-20 px-6 max-w-7xl mx-auto"
+      >
+        <div className="flex gap-2 md:gap-3 items-end">
+          {photoStrip.map((photo, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.65, delay: i * 0.08 }}
+              className={`flex-1 ${photo.aspect} relative overflow-hidden group min-w-0`}
+              style={{ background: photo.gradient }}
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `radial-gradient(ellipse at ${photo.glow}, rgba(184,146,106,0.32) 0%, transparent 60%)`,
+                }}
+              />
+              {/* Subtle hover brightening */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "rgba(184,146,106,0.07)" }} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-xl mx-auto mb-16"
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="text-center max-w-xl mx-auto mb-14"
         >
           <p
             className="text-xs font-medium tracking-[0.25em] uppercase mb-5"
@@ -63,14 +103,14 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        {/* Cards */}
+        {/* Testimonial cards */}
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 32 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 + i * 0.15 }}
+              transition={{ duration: 0.7, delay: 0.2 + i * 0.15 }}
               className="flex flex-col p-8"
               style={{ backgroundColor: "var(--cream)" }}
             >
@@ -83,53 +123,32 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              {/* Quote */}
               <blockquote
                 className="text-base leading-relaxed flex-1 mb-8"
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  color: "var(--charcoal)",
-                  opacity: 0.85,
-                }}
+                style={{ fontFamily: "var(--font-dm-sans)", color: "var(--charcoal)", opacity: 0.85 }}
               >
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
 
-              {/* Metric */}
               <div
                 className="text-xs font-medium tracking-wide py-2 px-3 mb-6 inline-block self-start"
-                style={{
-                  backgroundColor: "var(--gold-pale)",
-                  color: "var(--gold)",
-                  fontFamily: "var(--font-dm-sans)",
-                }}
+                style={{ backgroundColor: "var(--gold-pale)", color: "var(--gold)", fontFamily: "var(--font-dm-sans)" }}
               >
                 ✓ {t.metric}
               </div>
 
-              {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t" style={{ borderColor: "var(--beige)" }}>
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium shrink-0"
-                  style={{
-                    backgroundColor: "var(--charcoal)",
-                    color: "var(--cream)",
-                    fontFamily: "var(--font-dm-sans)",
-                  }}
+                  style={{ backgroundColor: "var(--charcoal)", color: "var(--cream)", fontFamily: "var(--font-dm-sans)" }}
                 >
                   {t.initials}
                 </div>
                 <div>
-                  <div
-                    className="text-sm font-medium"
-                    style={{ color: "var(--charcoal)", fontFamily: "var(--font-dm-sans)" }}
-                  >
+                  <div className="text-sm font-medium" style={{ color: "var(--charcoal)", fontFamily: "var(--font-dm-sans)" }}>
                     {t.name}
                   </div>
-                  <div
-                    className="text-xs"
-                    style={{ color: "var(--charcoal-light)", opacity: 0.6, fontFamily: "var(--font-dm-sans)" }}
-                  >
+                  <div className="text-xs" style={{ color: "var(--charcoal-light)", opacity: 0.6, fontFamily: "var(--font-dm-sans)" }}>
                     {t.role}
                   </div>
                 </div>

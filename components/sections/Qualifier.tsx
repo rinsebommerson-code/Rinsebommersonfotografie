@@ -27,11 +27,11 @@ export default function Qualifier() {
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Left column — FOR YOU */}
+          {/* Left — checklist */}
           <motion.div
             initial={{ opacity: 0, x: -32 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
           >
             <p
               className="text-xs font-medium tracking-[0.25em] uppercase mb-5"
@@ -60,75 +60,26 @@ export default function Qualifier() {
                     style={{ backgroundColor: "var(--gold)" }}
                   >
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path
-                        d="M2 5l2 2 4-4"
-                        stroke="var(--charcoal)"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M2 5l2 2 4-4" stroke="var(--charcoal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <p
                     className="text-base leading-relaxed"
-                    style={{
-                      fontFamily: "var(--font-dm-sans)",
-                      color: "var(--charcoal)",
-                    }}
+                    style={{ fontFamily: "var(--font-dm-sans)", color: "var(--charcoal)" }}
                   >
                     {item}
                   </p>
                 </motion.li>
               ))}
             </ul>
-          </motion.div>
-
-          {/* Right column — visual + not for you */}
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-8"
-          >
-            {/* Decorative quote card */}
-            <div
-              className="p-10 md:p-12"
-              style={{
-                backgroundColor: "var(--charcoal)",
-              }}
-            >
-              <div
-                className="text-5xl mb-6 leading-none"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-playfair)" }}
-              >
-                &ldquo;
-              </div>
-              <p
-                className="text-2xl md:text-3xl leading-snug mb-6"
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  color: "var(--cream)",
-                  fontStyle: "italic",
-                }}
-              >
-                Ik wist dat mijn tarieven omhoog konden — maar mijn beeldmateriaal
-                vertelde nog het oude verhaal.
-              </p>
-              <p
-                className="text-sm"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-dm-sans)" }}
-              >
-                — Ondernemer, na het Full Imagery Plan
-              </p>
-            </div>
 
             {/* Not for you */}
-            <div
-              className="p-6 border-l-2"
-              style={{
-                borderColor: "var(--soft-beige)",
-                backgroundColor: "var(--cream)",
-              }}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.75 }}
+              className="mt-10 p-6 border-l-2"
+              style={{ borderColor: "var(--soft-beige)", backgroundColor: "var(--cream)" }}
             >
               <p
                 className="text-xs font-medium tracking-[0.2em] uppercase mb-3"
@@ -138,15 +89,84 @@ export default function Qualifier() {
               </p>
               <p
                 className="text-sm leading-relaxed"
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  color: "var(--charcoal)",
-                  opacity: 0.7,
-                }}
+                style={{ fontFamily: "var(--font-dm-sans)", color: "var(--charcoal)", opacity: 0.7 }}
               >
                 {notForYou}
               </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Right — photo with quote overlay */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
+            className="relative"
+          >
+            {/* Tall portrait photo placeholder */}
+            <div
+              className="relative w-full aspect-[3/4] overflow-hidden"
+              style={{
+                background: "linear-gradient(160deg, #2C2820 0%, #1A1610 50%, #0E0C08 100%)",
+              }}
+            >
+              {/* Portrait lighting glow */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "radial-gradient(ellipse at 42% 30%, rgba(184,146,106,0.35) 0%, transparent 60%)",
+                }}
+              />
+              {/* Lower gradient for quote legibility */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(to top, rgba(14,12,8,0.92) 0%, rgba(14,12,8,0.5) 35%, transparent 65%)",
+                }}
+              />
+
+              {/* Quote overlay at the bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <div
+                  className="text-3xl mb-3 leading-none"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-playfair)" }}
+                >
+                  &ldquo;
+                </div>
+                <p
+                  className="text-xl md:text-2xl leading-snug mb-5"
+                  style={{ fontFamily: "var(--font-playfair)", color: "var(--cream)", fontStyle: "italic" }}
+                >
+                  Ik wist dat mijn tarieven omhoog konden — maar mijn beeldmateriaal
+                  vertelde nog het oude verhaal.
+                </p>
+                <p
+                  className="text-sm"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-dm-sans)" }}
+                >
+                  — Ondernemer, na het Full Imagery Plan
+                </p>
+              </div>
             </div>
+
+            {/* Small second photo, offset bottom-right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="absolute -bottom-6 -right-4 md:-right-8 w-36 md:w-44 aspect-square overflow-hidden border-4"
+              style={{
+                background: "linear-gradient(155deg, #1E2830 0%, #111820 100%)",
+                borderColor: "var(--warm-white)",
+              }}
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "radial-gradient(ellipse at 55% 35%, rgba(184,146,106,0.3) 0%, transparent 65%)",
+                }}
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -9,13 +9,11 @@ const painPoints = [
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M9 14l3 3 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 0" opacity="0.3" />
         <path d="M10 10l8 8M18 10l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
     title: "Geen beelden die bij je niveau passen",
-    body:
-      "Je bent gegroeid — je tarieven, je klanten, je aanpak. Maar je foto's zijn nog van toen je net begon. Dat voelt niet meer goed, en je potentiële klanten voelen het ook.",
+    body: "Je bent gegroeid — je tarieven, je klanten, je aanpak. Maar je foto's zijn nog van toen je net begon.",
   },
   {
     icon: (
@@ -23,12 +21,10 @@ const painPoints = [
         <rect x="1" y="6" width="26" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
         <path d="M9 6V4a5 5 0 0110 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <circle cx="14" cy="15" r="2.5" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M14 17.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
     title: "Je weet niet wat je moet dragen, staan of uitstralen",
-    body:
-      "Styling, locatie, houding, licht — er zijn te veel keuzes. Je wil gewoon goede beelden, maar je weet niet waar je moet beginnen en hoe je jezelf voor de camera presenteert.",
+    body: "Styling, locatie, houding, licht — te veel keuzes. Je wil goede beelden maar weet niet hoe je dat aanpakt.",
   },
   {
     icon: (
@@ -38,9 +34,16 @@ const painPoints = [
       </svg>
     ),
     title: "Een gewone fotoshoot voelt niet meer genoeg",
-    body:
-      "Twee uur in een studio, zeven dezelfde poses, geleverd als losstaande bestanden zonder strategie. Dat is niet wat je bedrijf nodig heeft. Jij hebt een compleet beeldsysteem nodig.",
+    body: "Twee uur in een studio, zeven dezelfde poses, losstaande bestanden. Jij hebt een compleet beeldsysteem nodig.",
   },
+];
+
+// Four editorial-style photo placeholders shown between headline and cards
+const stripPhotos = [
+  { aspect: "aspect-[2/3]", gradient: "linear-gradient(160deg, #2C2518 0%, #1A1210 100%)", pos: "40% 20%" },
+  { aspect: "aspect-[3/4]", gradient: "linear-gradient(155deg, #1E2830 0%, #111820 100%)", pos: "50% 30%" },
+  { aspect: "aspect-[2/3]", gradient: "linear-gradient(160deg, #2A2010 0%, #1C1408 100%)", pos: "45% 25%" },
+  { aspect: "aspect-[3/4]", gradient: "linear-gradient(150deg, #201C28 0%, #14101E 100%)", pos: "55% 20%" },
 ];
 
 export default function Problem() {
@@ -54,12 +57,12 @@ export default function Problem() {
       style={{ backgroundColor: "var(--warm-white)" }}
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Opening */}
+        {/* Opening headline */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl mb-20"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
+          className="max-w-2xl mb-14"
         >
           <p
             className="text-xs font-medium tracking-[0.25em] uppercase mb-5"
@@ -76,16 +79,43 @@ export default function Problem() {
           </h2>
           <p
             className="text-lg leading-relaxed"
-            style={{
-              color: "var(--charcoal-light)",
-              fontFamily: "var(--font-dm-sans)",
-              opacity: 0.8,
-            }}
+            style={{ color: "var(--charcoal-light)", fontFamily: "var(--font-dm-sans)", opacity: 0.8 }}
           >
-            Je omzet groeit, je klanten zijn tevreden, je expertise is er. Maar
-            wie jou online tegenkomt, ziet dat nog niet. De kloof tussen wie je
-            bent en hoe je overkomt — dat lost een Full Imagery Plan op.
+            Je omzet groeit, je klanten zijn tevreden, je expertise is er. Maar wie jou online
+            tegenkomt, ziet dat nog niet.
           </p>
+        </motion.div>
+
+        {/* ── Photo strip ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-20"
+        >
+          {stripPhotos.map((photo, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.25 + i * 0.1 }}
+              className={`w-full ${photo.aspect} relative overflow-hidden group`}
+              style={{ background: photo.gradient }}
+            >
+              {/* Warm portrait glow */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `radial-gradient(ellipse at ${photo.pos}, rgba(184,146,106,0.35) 0%, transparent 60%)`,
+                }}
+              />
+              {/* Subtle hover lift */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                style={{ background: "rgba(184,146,106,0.08)" }}
+              />
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Pain point cards */}
@@ -95,39 +125,20 @@ export default function Problem() {
               key={i}
               initial={{ opacity: 0, y: 32 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.7,
-                delay: 0.15 + i * 0.12,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              transition={{ duration: 0.7, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
               className="p-8 border"
-              style={{
-                borderColor: "var(--beige)",
-                backgroundColor: "var(--cream)",
-              }}
+              style={{ borderColor: "var(--beige)", backgroundColor: "var(--cream)" }}
             >
-              <div
-                className="mb-5"
-                style={{ color: "var(--gold)" }}
-              >
-                {point.icon}
-              </div>
+              <div className="mb-5" style={{ color: "var(--gold)" }}>{point.icon}</div>
               <h3
                 className="text-xl mb-4 leading-snug"
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  color: "var(--charcoal)",
-                }}
+                style={{ fontFamily: "var(--font-playfair)", color: "var(--charcoal)" }}
               >
                 {point.title}
               </h3>
               <p
                 className="text-sm leading-relaxed"
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  color: "var(--charcoal-light)",
-                  opacity: 0.8,
-                }}
+                style={{ fontFamily: "var(--font-dm-sans)", color: "var(--charcoal-light)", opacity: 0.8 }}
               >
                 {point.body}
               </p>
@@ -135,17 +146,13 @@ export default function Problem() {
           ))}
         </div>
 
-        {/* Bridge line */}
+        {/* Bridge quote */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 text-center text-lg font-medium"
-          style={{
-            fontFamily: "var(--font-playfair)",
-            color: "var(--charcoal)",
-            fontStyle: "italic",
-          }}
+          style={{ fontFamily: "var(--font-playfair)", color: "var(--charcoal)", fontStyle: "italic" }}
         >
           &ldquo;Jij bent de expert. Wij zorgen dat dat ook{" "}
           <span style={{ color: "var(--gold)" }}>te zien</span> is.&rdquo;
