@@ -2,7 +2,7 @@ import Navigation from "@/components/sections/Navigation";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Solution from "@/components/sections/Solution";
-import Portfolio from "@/components/sections/Portfolio";
+import PortfolioPreview from "@/components/sections/PortfolioPreview";
 import Qualifier from "@/components/sections/Qualifier";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
@@ -20,7 +20,7 @@ export default function Home() {
         <Hero />
         <Problem />
         <Solution />
-        <Portfolio />
+        <PortfolioPreview />
         <Qualifier />
         <Process />
         <Testimonials />
