@@ -117,7 +117,7 @@ export default function PhotoBanner() {
         style={{ borderTop: "1px solid rgba(250,248,245,0.06)" }}
       >
         <a
-          href="/portfolio"
+          href="/#portfolio"
           className="inline-flex items-center gap-2 text-sm tracking-wide transition-colors duration-200 group"
           style={{ color: "rgba(250,248,245,0.6)", fontFamily: "var(--font-dm-sans)" }}
           onMouseEnter={(e) => { e.currentTarget.style.color = "var(--gold)"; }}

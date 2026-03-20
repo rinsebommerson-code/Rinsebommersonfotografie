@@ -11,7 +11,7 @@ interface NavigationProps {
 
 const navLinks = [
   { label: "Werkwijze", href: "/#werkwijze" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Portfolio", href: "/#portfolio" },
   { label: "Over mij", href: "/#over" },
   { label: "Investering", href: "/#investering" },
   { label: "Contact", href: "/#contact" },
