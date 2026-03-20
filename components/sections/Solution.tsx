@@ -7,9 +7,9 @@ import { useRef } from "react";
 const steps = [
   {
     number: "01",
-    title: "Strategiegesprek",
-    subtitle: "Wat heb jij nodig?",
-    body: "We starten met een diepgaand gesprek over jouw merk, doelen, doelgroep en wat voor beelden jij nodig hebt om die volgende stap te maken.",
+    title: "Intake & Beeldanalyse",
+    subtitle: "Waar sta je en waar wil je naartoe?",
+    body: "Je vult het intakeformulier in met je huidige situatie, doelen en je website/socials. Ik analyseer je merkpresentatie en koppel persoonlijk terug met mijn bevindingen.",
   },
   {
     number: "02",

@@ -89,7 +89,7 @@ export default function Navigation({ darkHero = true }: NavigationProps) {
               e.currentTarget.style.color = "var(--cream)";
             }}
           >
-            Strategiegesprek
+            Beeldanalyse aanvragen
           </a>
         </nav>
 
@@ -149,7 +149,7 @@ export default function Navigation({ darkHero = true }: NavigationProps) {
                 }}
                 onClick={() => setMenuOpen(false)}
               >
-                Strategiegesprek aanvragen
+                Beeldanalyse aanvragen
               </a>
             </nav>
           </motion.div>

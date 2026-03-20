@@ -6,9 +6,9 @@ import { motion, useInView } from "framer-motion";
 const steps = [
   {
     number: "01",
-    title: "Strategiegesprek",
-    body: "We beginnen met een grondig gesprek. Waar sta je, waar wil je naartoe, en welke beelden heb je daarvoor nodig? Dit is de basis van alles.",
-    duration: "± 60 min",
+    title: "Intake & Beeldanalyse",
+    body: "Je vult het intakeformulier in met je huidige situatie, je doelen en je website/socials. Ik analyseer je merkpresentatie en koppel persoonlijk terug — zo starten we al met inzicht.",
+    duration: "± 2 werkdagen",
   },
   {
     number: "02",
@@ -64,7 +64,7 @@ export default function Process() {
             className="text-4xl md:text-5xl leading-tight"
             style={{ fontFamily: "var(--font-playfair)", color: "var(--charcoal)" }}
           >
-            Van eerste gesprek{" "}
+            Van beeldanalyse{" "}
             <em>tot klaar voor gebruik</em>
           </h2>
         </motion.div>

@@ -6,7 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     q: "Wat is een Full Imagery Plan precies?",
-    a: "Een Full Imagery Plan is een complete aanpak waarbij we samen jouw visuele merkidentiteit opbouwen. Het begint met een strategiegesprek en eindigt met een complete beeldbank die je jarenlang kunt inzetten. Het is geen losse fotoshoot — het is een systeem.",
+    a: "Een Full Imagery Plan is een complete aanpak waarbij we samen jouw visuele merkidentiteit opbouwen. Het begint met een gratis beeldanalyse van je huidige presentatie en eindigt met een complete beeldbank die je jarenlang kunt inzetten. Het is geen losse fotoshoot — het is een systeem.",
   },
   {
     q: "Is haar en make-up inbegrepen?",
@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Wat als ik niet weet wat ik wil?",
-    a: "Dan beginnen we daar. Het strategiegesprek is er juist voor. Veel klanten weten voor het gesprek niet wat ze nodig hebben — en na het gesprek is alles helder. We leiden je door het hele proces, je hoeft nergens zelf op te verzinnen.",
+    a: "Dan beginnen we daar. Het intakeformulier helpt je juist om dat scherp te krijgen. Vul in wat je kunt — ik analyseer je huidige presentatie en koppel terug wat ik zie en wat er mogelijk is. Na de beeldanalyse is het plaatje voor jou en voor mij helder.",
   },
   {
     q: "Wanneer zijn de beelden klaar?",

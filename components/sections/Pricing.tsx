@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const included = [
-  "Uitgebreid strategiegesprek (60 min)",
+  "Uitgebreide intake & beeldanalyse",
   "Volledig conceptontwikkeling & moodboard",
   "Locatie scouting op maat",
   "Styling advies & begeleiding",
@@ -21,7 +21,7 @@ const packages = [
     price: "€1.495",
     description: "Voor de ondernemer die wil starten met een sterke visuele basis.",
     features: [
-      "Strategiegesprek",
+      "Intake & Beeldanalyse",
       "Conceptontwikkeling",
       "Halve shootdag",
       "15 nabewerkte beelden",
