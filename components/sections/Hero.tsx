@@ -100,9 +100,7 @@ export default function Hero() {
               fontWeight: 300,
             }}
           >
-            Van ondernemer die groeit naar een merk dat autoriteit uitstraalt.
-            Strategische beelden die jouw niveau weerspiegelen — niet wat je was,
-            maar wie je nu bent.
+            Van groeiende ondernemer naar een merk dat autoriteit uitstraalt. Ga voor foto&apos;s die matchen met wie je nu bent.
           </motion.p>
 
           {/* CTAs */}
