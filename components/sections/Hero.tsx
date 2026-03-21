@@ -81,10 +81,10 @@ export default function Hero() {
               fontWeight: 400,
             }}
           >
-            Wordt zichtbaar bij de klanten die jou helpen groeien met foto&apos;s die{" "}
-            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>
-              matchen wie jij bent.
-            </span>
+            Wordt{" "}
+            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>zichtbaar</span>{" "}
+            bij de klanten die jouw bedrijf laten{" "}
+            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>groeien</span>
           </motion.h1>
 
           {/* Subheadline */}
