@@ -81,9 +81,9 @@ export default function Hero() {
               fontWeight: 400,
             }}
           >
-            Onvergetelijke zichtbaarheid begint bij de foto&apos;s die{" "}
+            Zichtbaar bij de klanten die jouw bedrijf helpen groeien door foto&apos;s die{" "}
             <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>
-              matchen met wie jij bent.
+              matchen bij wie je nu bent.
             </span>
           </motion.h1>
 
