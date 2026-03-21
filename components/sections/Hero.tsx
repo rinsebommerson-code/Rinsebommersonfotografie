@@ -81,9 +81,9 @@ export default function Hero() {
               fontWeight: 400,
             }}
           >
-            Jij bent de expert.{" "}
+            Onvergetelijke zichtbaarheid begint met foto&apos;s die{" "}
             <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>
-              Het wordt tijd dat je er ook zo uitziet.
+              matchen met wie jij bent.
             </span>
           </motion.h1>
 
