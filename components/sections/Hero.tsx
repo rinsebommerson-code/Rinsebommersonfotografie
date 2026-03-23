@@ -33,7 +33,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(26,21,18,0.85) 0%, rgba(26,21,18,0.75) 30%, rgba(26,21,18,0.35) 52%, rgba(26,21,18,0.03) 72%, transparent 100%)",
+              "linear-gradient(to right, rgba(26,21,18,1) 0%, rgba(26,21,18,0.95) 30%, rgba(26,21,18,0.5) 52%, rgba(26,21,18,0.05) 72%, transparent 100%)",
           }}
         />
         {/* Bottom grounding gradient */}
