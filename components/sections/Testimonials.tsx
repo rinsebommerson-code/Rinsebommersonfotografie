@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -32,11 +33,11 @@ const testimonials = [
 
 // Five wide-format editorial photos shown as a strip above the testimonials
 const photoStrip = [
-  { aspect: "aspect-[4/5]",  gradient: "linear-gradient(160deg, #2C2518 0%, #1A1210 100%)", glow: "45% 28%" },
-  { aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #1E2830 0%, #111820 100%)", glow: "50% 32%" },
-  { aspect: "aspect-[4/5]",  gradient: "linear-gradient(160deg, #201C28 0%, #14101C 100%)", glow: "42% 25%" },
-  { aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #281E0A 0%, #1A1408 100%)", glow: "55% 30%" },
-  { aspect: "aspect-[4/5]",  gradient: "linear-gradient(160deg, #1A2020 0%, #101618 100%)", glow: "48% 27%" },
+  { aspect: "aspect-[4/5]", src: "/images/portfolio/Output/DSCF2142klein.jpg" },
+  { aspect: "aspect-[3/4]", src: "/images/portfolio/Output/Male shoot klein 15.jpg" },
+  { aspect: "aspect-[4/5]", src: "/images/portfolio/portfolio-rinse/17-04-2021 - Denise en Benthe Beauty shoot1079 1.jpg" },
+  { aspect: "aspect-[3/4]", src: "/images/portfolio/batavia-1894/DSC03174Insta.jpg" },
+  { aspect: "aspect-[4/5]", src: "/images/portfolio/Output/DSC07849.jpg" },
 ];
 
 export default function Testimonials() {
@@ -64,15 +65,14 @@ export default function Testimonials() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.65, delay: i * 0.08 }}
               className={`flex-1 ${photo.aspect} relative overflow-hidden group min-w-0`}
-              style={{ background: photo.gradient }}
             >
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `radial-gradient(ellipse at ${photo.glow}, rgba(184,146,106,0.32) 0%, transparent 60%)`,
-                }}
+              <Image
+                src={photo.src}
+                alt="Portfolio"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 20vw"
               />
-              {/* Subtle hover brightening */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: "rgba(184,146,106,0.07)" }} />
             </motion.div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -38,12 +39,12 @@ const painPoints = [
   },
 ];
 
-// Four editorial-style photo placeholders shown between headline and cards
+// Four editorial-style photos shown between headline and cards
 const stripPhotos = [
-  { aspect: "aspect-[2/3]", gradient: "linear-gradient(160deg, #2C2518 0%, #1A1210 100%)", pos: "40% 20%" },
-  { aspect: "aspect-[3/4]", gradient: "linear-gradient(155deg, #1E2830 0%, #111820 100%)", pos: "50% 30%" },
-  { aspect: "aspect-[2/3]", gradient: "linear-gradient(160deg, #2A2010 0%, #1C1408 100%)", pos: "45% 25%" },
-  { aspect: "aspect-[3/4]", gradient: "linear-gradient(150deg, #201C28 0%, #14101E 100%)", pos: "55% 20%" },
+  { aspect: "aspect-[2/3]", src: "/images/portfolio/Output/DSCF2062klein.jpg" },
+  { aspect: "aspect-[3/4]", src: "/images/portfolio/Output/Maruschka Klein 5.jpg" },
+  { aspect: "aspect-[2/3]", src: "/images/portfolio/portfolio-rinse/13-03-2021 - Beautyshoot Portfolio Senja En Olga1684Insta.jpg" },
+  { aspect: "aspect-[3/4]", src: "/images/portfolio/batavia-1894/DSC03253Insta.jpg" },
 ];
 
 export default function Problem() {
@@ -100,18 +101,16 @@ export default function Problem() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.25 + i * 0.1 }}
               className={`w-full ${photo.aspect} relative overflow-hidden group`}
-              style={{ background: photo.gradient }}
             >
-              {/* Warm portrait glow */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `radial-gradient(ellipse at ${photo.pos}, rgba(184,146,106,0.35) 0%, transparent 60%)`,
-                }}
+              <Image
+                src={photo.src}
+                alt="Portfolio"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 25vw"
               />
-              {/* Subtle hover lift */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: "rgba(184,146,106,0.08)" }}
               />
             </motion.div>

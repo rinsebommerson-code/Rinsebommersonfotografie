@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -103,19 +104,14 @@ export default function Qualifier() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
             className="relative"
           >
-            {/* Tall portrait photo placeholder */}
-            <div
-              className="relative w-full aspect-[3/4] overflow-hidden"
-              style={{
-                background: "linear-gradient(160deg, #2C2820 0%, #1A1610 50%, #0E0C08 100%)",
-              }}
-            >
-              {/* Portrait lighting glow */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "radial-gradient(ellipse at 42% 30%, rgba(184,146,106,0.35) 0%, transparent 60%)",
-                }}
+            {/* Tall portrait photo */}
+            <div className="relative w-full aspect-[3/4] overflow-hidden">
+              <Image
+                src="/images/portfolio/Output/DSCF2167klein.jpg"
+                alt="Portfolio portret"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               {/* Lower gradient for quote legibility */}
               <div
@@ -155,16 +151,14 @@ export default function Qualifier() {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.5 }}
               className="absolute -bottom-6 -right-4 md:-right-8 w-36 md:w-44 aspect-square overflow-hidden border-4"
-              style={{
-                background: "linear-gradient(155deg, #1E2830 0%, #111820 100%)",
-                borderColor: "var(--warm-white)",
-              }}
+              style={{ borderColor: "var(--warm-white)" }}
             >
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "radial-gradient(ellipse at 55% 35%, rgba(184,146,106,0.3) 0%, transparent 65%)",
-                }}
+              <Image
+                src="/images/portfolio/Output/rinse_bommerson 6.jpg"
+                alt="Portfolio portret"
+                fill
+                className="object-cover"
+                sizes="176px"
               />
             </motion.div>
           </motion.div>

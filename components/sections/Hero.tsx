@@ -21,8 +21,8 @@ export default function Hero() {
       {/* Hero background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/portfolio/batavia-1894/DSC03553Insta.jpg"
-          alt="Rinse Bommerson Fotografie – portfolio shoot"
+          src="/images/portfolio/Output/Rinse_bommerson Groot 14.jpg"
+          alt="Rinse Bommerson Fotografie – merkfotograaf"
           fill
           priority
           className="object-cover object-center"
