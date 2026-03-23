@@ -21,12 +21,12 @@ export default function Hero() {
       {/* Hero background image — black & white, positioned right */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/portfolio/Output/Familie Bommerson & Aanhang shoot 27.jpg"
-          alt="Rinse Bommerson Fotografie – lachende mensen"
+          src="/images/portfolio/Output/Rinse_bommerson Groot 14.jpg"
+          alt="Rinse Bommerson Fotografie – merkfotograaf"
           fill
           priority
           className="object-cover grayscale"
-          style={{ objectPosition: "50% 40%" }}
+          style={{ objectPosition: "72% 30%", transform: "scaleX(-1)" }}
         />
         {/* Left-to-right gradient: opaque on text side, open on person side */}
         <div
