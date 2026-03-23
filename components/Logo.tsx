@@ -11,7 +11,7 @@ export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const src = variant === "light" ? "/images/logo/logo-wit.png" : "/images/logo/logo-zwart.png";
 
   return (
-    <div className={`relative ${className}`} style={{ height: "40px", width: "160px" }}>
+    <div className={`relative ${className}`} style={{ height: "52px", width: "133px" }}>
       <Image
         src={src}
         alt="Rinse Bommerson Photography"
