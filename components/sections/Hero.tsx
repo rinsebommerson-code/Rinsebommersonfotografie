@@ -28,14 +28,6 @@ export default function Hero() {
           className="object-cover"
           style={{ objectPosition: "72% 0%", transform: "scaleX(-1)" }}
         />
-        {/* Top gradient — bedekt gezicht achter nav, versmelt met charcoal achtergrond */}
-        <div
-          className="absolute top-0 left-0 right-0"
-          style={{
-            height: "140px",
-            background: "linear-gradient(to bottom, rgba(26,21,18,1) 0%, rgba(26,21,18,0.85) 55%, transparent 100%)",
-          }}
-        />
         {/* Left-to-right gradient: opaque on text side, open on person side */}
         <div
           className="absolute inset-0"
