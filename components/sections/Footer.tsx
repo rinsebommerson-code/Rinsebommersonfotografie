@@ -21,7 +21,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 md:gap-16 mb-16">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Logo variant="light" showText={true} className="mb-5" />
+            <Logo variant="light" className="mb-5" />
             <p
               className="text-sm leading-relaxed max-w-xs"
               style={{
