@@ -19,14 +19,14 @@ export default function Hero() {
       style={{ backgroundColor: "var(--charcoal)" }}
     >
       {/* Hero background image — gekleurd, gespiegeld, koppen onder de nav */}
-      <div className="absolute left-0 right-0 z-0" style={{ top: "80px", bottom: "-80px" }}>
+      <div className="absolute left-0 right-0 z-0" style={{ top: "0", bottom: "0" }}>
         <Image
           src="/images/portfolio/Output/Rinse_bommerson Groot 14.jpg"
           alt="Rinse Bommerson Fotografie – merkfotograaf"
           fill
           priority
           className="object-cover"
-          style={{ objectPosition: "72% 0%", transform: "scaleX(-1)" }}
+          style={{ objectPosition: "72% 80px", transform: "scaleX(-1)" }}
         />
         {/* Left-to-right gradient: opaque on text side, open on person side */}
         <div
