@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
 type Category = "Alles" | "Personal Brand" | "Team" | "Lifestyle";
@@ -64,6 +65,8 @@ const allPhotos = [
   { id: 50, cat: "Lifestyle", aspect: "aspect-[4/5]",  src: "/images/portfolio/portfolio-rinse/_DSC2559zwart wit web jpeg.jpg" },
 ];
 
+type Photo = (typeof allPhotos)[number];
+
 // How many photos to show in collapsed state
 const COLLAPSED_COUNT = 9;
 
@@ -73,12 +76,69 @@ const catDescriptions: Record<string, string> = {
   Lifestyle: "Jij in je element — op locatie, in beweging, in het echte leven.",
 };
 
+function Lightbox({ photo, onClose }: { photo: Photo; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12"
+      style={{ backgroundColor: "rgba(26,21,18,0.93)" }}
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-4xl w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div
+          className="relative w-full overflow-hidden"
+          style={{
+            aspectRatio:
+              photo.aspect === "aspect-square"
+                ? "1 / 1"
+                : photo.aspect.replace("aspect-[", "").replace("]", "").replace("/", " / "),
+            maxHeight: "85vh",
+          }}
+        >
+          <Image
+            src={photo.src}
+            alt={photo.cat}
+            fill
+            className="object-contain"
+            sizes="100vw"
+            priority
+          />
+        </div>
+        <button
+          onClick={onClose}
+          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200"
+          style={{ backgroundColor: "var(--gold)", color: "var(--charcoal)" }}
+          aria-label="Sluiten"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 export default function PortfolioPreview() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   const [activeCategory, setActiveCategory] = useState<Category>("Alles");
   const [expanded, setExpanded] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   const filtered =
     activeCategory === "Alles"
@@ -88,7 +148,6 @@ export default function PortfolioPreview() {
   const visible = expanded ? filtered : filtered.slice(0, COLLAPSED_COUNT);
   const hasMore = filtered.length > COLLAPSED_COUNT;
 
-  // Collapse back to top of section when collapsing
   function handleCollapse() {
     setExpanded(false);
     const el = document.getElementById("portfolio");
@@ -172,7 +231,7 @@ export default function PortfolioPreview() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 space-y-3"
+            className="columns-1 sm:columns-2 lg:columns-3 gap-3 space-y-3"
           >
             <AnimatePresence>
               {visible.map((photo, i) => (
@@ -183,26 +242,22 @@ export default function PortfolioPreview() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4, delay: i * 0.03 }}
                   className="break-inside-avoid group relative overflow-hidden cursor-pointer"
+                  onClick={() => setSelectedPhoto(photo)}
                 >
-                  <div
-                    className={`w-full ${photo.aspect} relative overflow-hidden`}
-                  >
-                    {/* Actual photo */}
+                  <div className={`w-full ${photo.aspect} relative overflow-hidden`}>
                     <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                       <Image
                         src={photo.src}
                         alt={photo.cat}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>
                     {/* Hover overlay */}
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4"
-                      style={{
-                        background: "linear-gradient(to top, rgba(26,21,18,0.75) 0%, transparent 55%)",
-                      }}
+                      style={{ background: "linear-gradient(to top, rgba(26,21,18,0.75) 0%, transparent 55%)" }}
                     >
                       <span
                         className="text-xs tracking-wider uppercase"
@@ -291,6 +346,10 @@ export default function PortfolioPreview() {
           </a>
         </motion.div>
       </div>
+
+      {selectedPhoto && (
+        <Lightbox photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
+      )}
     </section>
   );
 }
