@@ -26,7 +26,7 @@ export default function Hero() {
           fill
           priority
           className="object-cover"
-          style={{ objectPosition: "72% 0%", transform: "scaleX(-1)" }}
+          style={{ objectPosition: "72% 0%", transform: "scaleX(-1)", filter: "brightness(1.25)" }}
         />
         {/* Left-to-right gradient: opaque on text side, open on person side */}
         <div
