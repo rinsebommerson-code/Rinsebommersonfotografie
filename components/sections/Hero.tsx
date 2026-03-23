@@ -74,10 +74,10 @@ export default function Hero() {
               fontWeight: 400,
             }}
           >
-            Wordt{" "}
-            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>zichtbaar</span>{" "}
-            bij de klanten die jouw bedrijf laten{" "}
-            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>groeien</span>
+            Laat een{" "}
+            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>onvergetelijke</span>{" "}
+            indruk achter bij je{" "}
+            <span style={{ color: "var(--gold-light)", fontStyle: "italic" }}>droomklant</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -93,7 +93,7 @@ export default function Hero() {
               fontWeight: 300,
             }}
           >
-            Van groeiende ondernemer naar een merk dat autoriteit uitstraalt. Ga voor foto&apos;s die matchen met wie je nu bent.
+            Je reis als ondernemer heeft je laten groeien tot wie je nu bent. Het wordt tijd dat jouw foto&apos;s dat ook gaan laten zien.
           </motion.p>
 
           {/* CTAs */}
