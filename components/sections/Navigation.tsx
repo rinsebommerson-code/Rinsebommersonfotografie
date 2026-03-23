@@ -73,20 +73,18 @@ export default function Navigation({ darkHero = true }: NavigationProps) {
             href="/#contact"
             className="px-5 py-2.5 text-sm font-medium tracking-wide transition-all duration-300"
             style={{
-              backgroundColor: isLight ? "rgba(250,248,245,0.15)" : "var(--charcoal)",
-              color: isLight ? "var(--cream)" : "var(--cream)",
-              border: isLight ? "1px solid rgba(250,248,245,0.35)" : "1px solid transparent",
+              backgroundColor: isLight ? "var(--gold)" : "var(--charcoal)",
+              color: isLight ? "var(--charcoal)" : "var(--cream)",
+              border: "1px solid transparent",
               fontFamily: "var(--font-dm-sans)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--gold)";
-              e.currentTarget.style.borderColor = "var(--gold)";
+              e.currentTarget.style.backgroundColor = "var(--gold-light)";
               e.currentTarget.style.color = "var(--charcoal)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = isLight ? "rgba(250,248,245,0.15)" : "var(--charcoal)";
-              e.currentTarget.style.borderColor = isLight ? "rgba(250,248,245,0.35)" : "transparent";
-              e.currentTarget.style.color = "var(--cream)";
+              e.currentTarget.style.backgroundColor = isLight ? "var(--gold)" : "var(--charcoal)";
+              e.currentTarget.style.color = isLight ? "var(--charcoal)" : "var(--cream)";
             }}
           >
             Beeldanalyse aanvragen
