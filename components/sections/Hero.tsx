@@ -18,15 +18,15 @@ export default function Hero() {
       className="relative min-h-screen flex items-end overflow-hidden"
       style={{ backgroundColor: "var(--charcoal)" }}
     >
-      {/* Hero background image — black & white, positioned right */}
-      <div className="absolute inset-0 z-0">
+      {/* Hero background image — gekleurd, gespiegeld, koppen onder de nav */}
+      <div className="absolute left-0 right-0 bottom-0 z-0" style={{ top: "80px" }}>
         <Image
           src="/images/portfolio/Output/Rinse_bommerson Groot 14.jpg"
           alt="Rinse Bommerson Fotografie – merkfotograaf"
           fill
           priority
-          className="object-cover grayscale"
-          style={{ objectPosition: "72% 30%", transform: "scaleX(-1)" }}
+          className="object-cover"
+          style={{ objectPosition: "72% 0%", transform: "scaleX(-1)" }}
         />
         {/* Left-to-right gradient: opaque on text side, open on person side */}
         <div
