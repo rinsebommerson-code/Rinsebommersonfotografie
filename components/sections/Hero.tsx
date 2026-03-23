@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const fadeUp = {
@@ -17,30 +18,21 @@ export default function Hero() {
       className="relative min-h-screen flex items-end overflow-hidden"
       style={{ backgroundColor: "var(--charcoal)" }}
     >
-      {/* Hero image placeholder — replace with Next.js Image */}
+      {/* Hero background image */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="w-full h-full"
-          style={{
-            background:
-              "linear-gradient(135deg, #2C2820 0%, #1A1512 40%, #0D0C0A 100%)",
-          }}
-        />
-        {/* Subtle grain texture overlay */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E\")",
-            backgroundSize: "200px 200px",
-          }}
+        <Image
+          src="/images/portfolio/batavia-1894/DSC03553Insta.jpg"
+          alt="Rinse Bommerson Fotografie – portfolio shoot"
+          fill
+          priority
+          className="object-cover object-center"
         />
         {/* Warm gradient overlay at bottom */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(26,21,18,0.97) 0%, rgba(26,21,18,0.6) 40%, rgba(26,21,18,0.1) 100%)",
+              "linear-gradient(to top, rgba(26,21,18,0.95) 0%, rgba(26,21,18,0.55) 45%, rgba(26,21,18,0.15) 100%)",
           }}
         />
         {/* Subtle warm accent on the right */}

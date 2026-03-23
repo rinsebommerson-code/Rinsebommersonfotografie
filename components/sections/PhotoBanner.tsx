@@ -1,25 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 // Three wide cinematic photos — full viewport width, edge to edge
 const panels = [
   {
-    gradient: "linear-gradient(160deg, #2C2518 0%, #1A1512 40%, #0E0C08 100%)",
-    glow: "38% 28%",
+    src: "/images/portfolio/Output/Rinse_bommerson Groot 28.jpg",
     label: "Personal Brand",
     flex: "flex-[2]",
   },
   {
-    gradient: "linear-gradient(155deg, #1E2830 0%, #0E1420 40%, #08101A 100%)",
-    glow: "52% 32%",
+    src: "/images/portfolio/Output/PresidentialsAmsterdam2020web 41.jpg",
     label: "Team",
     flex: "flex-[1]",
   },
   {
-    gradient: "linear-gradient(160deg, #281E0A 0%, #1A1208 40%, #0E0C06 100%)",
-    glow: "45% 25%",
+    src: "/images/portfolio/batavia-1894/DSC03813Insta.jpg",
     label: "Lifestyle",
     flex: "flex-[2]",
   },
@@ -69,15 +67,17 @@ export default function PhotoBanner() {
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1.1, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
             className={`${panel.flex} relative overflow-hidden group cursor-pointer`}
-            style={{ background: panel.gradient }}
           >
-            {/* Portrait lighting simulation */}
-            <div
-              className="absolute inset-0 transition-opacity duration-500"
-              style={{
-                background: `radial-gradient(ellipse at ${panel.glow}, rgba(184,146,106,0.4) 0%, transparent 65%)`,
-              }}
+            {/* Actual photo */}
+            <Image
+              src={panel.src}
+              alt={panel.label}
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 40vw"
             />
+            {/* Dark base overlay */}
+            <div className="absolute inset-0 bg-black/30" />
             {/* Hover: slightly brighten */}
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"

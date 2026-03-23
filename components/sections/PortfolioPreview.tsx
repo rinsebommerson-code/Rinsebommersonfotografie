@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
@@ -9,31 +10,31 @@ const CATEGORIES: Category[] = ["Alles", "Personal Brand", "Team", "Lifestyle"];
 
 const allPhotos = [
   // Personal Brand — 8
-  { id: 1,  cat: "Personal Brand", aspect: "aspect-[3/4]",  gradient: "linear-gradient(160deg, #2C2518 0%, #1A1512 100%)", glow: "42% 28%" },
-  { id: 2,  cat: "Personal Brand", aspect: "aspect-[4/5]",  gradient: "linear-gradient(155deg, #382C1C 0%, #2A1E10 100%)", glow: "50% 32%" },
-  { id: 3,  cat: "Personal Brand", aspect: "aspect-square", gradient: "linear-gradient(150deg, #241C14 0%, #181210 100%)", glow: "45% 25%" },
-  { id: 4,  cat: "Personal Brand", aspect: "aspect-[3/4]",  gradient: "linear-gradient(165deg, #301E10 0%, #1C1408 100%)", glow: "38% 30%" },
-  { id: 5,  cat: "Personal Brand", aspect: "aspect-[2/3]",  gradient: "linear-gradient(145deg, #3C2A18 0%, #2A1C0E 100%)", glow: "48% 22%" },
-  { id: 6,  cat: "Personal Brand", aspect: "aspect-[4/3]",  gradient: "linear-gradient(160deg, #281C10 0%, #1C1208 100%)", glow: "44% 35%" },
-  { id: 7,  cat: "Personal Brand", aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #342418 0%, #241810 100%)", glow: "40% 28%" },
-  { id: 8,  cat: "Personal Brand", aspect: "aspect-square", gradient: "linear-gradient(150deg, #201810 0%, #140E08 100%)", glow: "52% 30%" },
+  { id: 1,  cat: "Personal Brand", aspect: "aspect-[3/4]",  src: "/images/portfolio/Output/Rinse_bommerson Groot 2.jpg" },
+  { id: 2,  cat: "Personal Brand", aspect: "aspect-[4/5]",  src: "/images/portfolio/Output/Rinse_bommerson Groot 14.jpg" },
+  { id: 3,  cat: "Personal Brand", aspect: "aspect-square", src: "/images/portfolio/Output/Rinse_bommerson Groot 15.jpg" },
+  { id: 4,  cat: "Personal Brand", aspect: "aspect-[3/4]",  src: "/images/portfolio/Output/Bert PNG bijgesneden.jpg" },
+  { id: 5,  cat: "Personal Brand", aspect: "aspect-[2/3]",  src: "/images/portfolio/Output/10-04-2021 - Jonah - Book-king.nl0797.jpg" },
+  { id: 6,  cat: "Personal Brand", aspect: "aspect-[4/3]",  src: "/images/portfolio/Output/Male shoot klein 13.jpg" },
+  { id: 7,  cat: "Personal Brand", aspect: "aspect-[3/4]",  src: "/images/portfolio/Output/Maruschka Klein 2.jpg" },
+  { id: 8,  cat: "Personal Brand", aspect: "aspect-square", src: "/images/portfolio/portfolio-rinse/13-03-2021 - Beautyshoot Portfolio Senja En Olga0078Insta.jpg" },
   // Team — 7
-  { id: 9,  cat: "Team", aspect: "aspect-[4/3]",  gradient: "linear-gradient(160deg, #1A2028 0%, #111820 100%)", glow: "48% 28%" },
-  { id: 10, cat: "Team", aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #202830 0%, #141C24 100%)", glow: "45% 32%" },
-  { id: 11, cat: "Team", aspect: "aspect-square", gradient: "linear-gradient(150deg, #161E26 0%, #0E161E 100%)", glow: "50% 25%" },
-  { id: 12, cat: "Team", aspect: "aspect-[4/3]",  gradient: "linear-gradient(165deg, #1C2430 0%, #101820 100%)", glow: "42% 30%" },
-  { id: 13, cat: "Team", aspect: "aspect-[3/4]",  gradient: "linear-gradient(145deg, #182028 0%, #0E1620 100%)", glow: "55% 28%" },
-  { id: 14, cat: "Team", aspect: "aspect-[2/3]",  gradient: "linear-gradient(160deg, #1E2830 0%, #121E28 100%)", glow: "40% 22%" },
-  { id: 15, cat: "Team", aspect: "aspect-[4/3]",  gradient: "linear-gradient(155deg, #141C24 0%, #0A121C 100%)", glow: "47% 35%" },
+  { id: 9,  cat: "Team", aspect: "aspect-[4/3]",  src: "/images/portfolio/Output/28-11-2020 - Holly Steel1061 Klein.jpg" },
+  { id: 10, cat: "Team", aspect: "aspect-[3/4]",  src: "/images/portfolio/Output/28-11-2020 - Holly Steel1079 Klein.jpg" },
+  { id: 11, cat: "Team", aspect: "aspect-[4/3]",  src: "/images/portfolio/Output/28-11-2020 - Holly Steel2154 Klein.jpg" },
+  { id: 12, cat: "Team", aspect: "aspect-[3/4]",  src: "/images/portfolio/Output/PresidentialsAmsterdam2020web 38.jpg" },
+  { id: 13, cat: "Team", aspect: "aspect-[4/3]",  src: "/images/portfolio/Output/PresidentialsAmsterdam2020web 41.jpg" },
+  { id: 14, cat: "Team", aspect: "aspect-[2/3]",  src: "/images/portfolio/portfolio-rinse/17-04-2021 - Denise en Benthe Beauty shoot0984.jpg" },
+  { id: 15, cat: "Team", aspect: "aspect-[3/4]",  src: "/images/portfolio/portfolio-rinse/19-04-2021 - Fashion shoot Marlies & Britt0833.jpg" },
   // Lifestyle — 8
-  { id: 16, cat: "Lifestyle", aspect: "aspect-[3/4]",  gradient: "linear-gradient(160deg, #201C10 0%, #141008 100%)", glow: "43% 28%" },
-  { id: 17, cat: "Lifestyle", aspect: "aspect-[4/3]",  gradient: "linear-gradient(155deg, #2A2418 0%, #1C1810 100%)", glow: "50% 32%" },
-  { id: 18, cat: "Lifestyle", aspect: "aspect-square", gradient: "linear-gradient(150deg, #281E0C 0%, #1A1408 100%)", glow: "46% 25%" },
-  { id: 19, cat: "Lifestyle", aspect: "aspect-[3/4]",  gradient: "linear-gradient(165deg, #241A0A 0%, #181008 100%)", glow: "38% 30%" },
-  { id: 20, cat: "Lifestyle", aspect: "aspect-[4/3]",  gradient: "linear-gradient(145deg, #2E2210 0%, #201808 100%)", glow: "53% 22%" },
-  { id: 21, cat: "Lifestyle", aspect: "aspect-[2/3]",  gradient: "linear-gradient(160deg, #261C0E 0%, #1A120A 100%)", glow: "44% 35%" },
-  { id: 22, cat: "Lifestyle", aspect: "aspect-[3/4]",  gradient: "linear-gradient(155deg, #2C200E 0%, #1E1608 100%)", glow: "48% 28%" },
-  { id: 23, cat: "Lifestyle", aspect: "aspect-square", gradient: "linear-gradient(150deg, #221A0C 0%, #16100A 100%)", glow: "41% 30%" },
+  { id: 16, cat: "Lifestyle", aspect: "aspect-[3/4]",  src: "/images/portfolio/batavia-1894/DSC03125Insta.jpg" },
+  { id: 17, cat: "Lifestyle", aspect: "aspect-[4/3]",  src: "/images/portfolio/batavia-1894/DSC03388Insta.jpg" },
+  { id: 18, cat: "Lifestyle", aspect: "aspect-square", src: "/images/portfolio/batavia-1894/DSC03486Insta.jpg" },
+  { id: 19, cat: "Lifestyle", aspect: "aspect-[3/4]",  src: "/images/portfolio/batavia-1894/DSC03652Insta.jpg" },
+  { id: 20, cat: "Lifestyle", aspect: "aspect-[4/3]",  src: "/images/portfolio/Output/Daphne Rose Kaarsen.jpg" },
+  { id: 21, cat: "Lifestyle", aspect: "aspect-[2/3]",  src: "/images/portfolio/Output/Belle 3.jpg" },
+  { id: 22, cat: "Lifestyle", aspect: "aspect-[3/4]",  src: "/images/portfolio/Output/Oogduyne 23.jpg" },
+  { id: 23, cat: "Lifestyle", aspect: "aspect-square", src: "/images/portfolio/Output/Lis Salsa 59.jpg" },
 ];
 
 // How many photos to show in collapsed state
@@ -158,14 +159,17 @@ export default function PortfolioPreview() {
                 >
                   <div
                     className={`w-full ${photo.aspect} relative overflow-hidden`}
-                    style={{ background: photo.gradient }}
                   >
-                    <div
-                      className="absolute inset-0 opacity-25"
-                      style={{
-                        background: `radial-gradient(ellipse at ${photo.glow}, rgba(184,146,106,0.55) 0%, transparent 65%)`,
-                      }}
-                    />
+                    {/* Actual photo */}
+                    <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                      <Image
+                        src={photo.src}
+                        alt={photo.cat}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      />
+                    </div>
                     {/* Hover overlay */}
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4"
@@ -180,11 +184,6 @@ export default function PortfolioPreview() {
                         {photo.cat}
                       </span>
                     </div>
-                    {/* Scale on hover */}
-                    <div
-                      className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-                      style={{ background: photo.gradient }}
-                    />
                   </div>
                 </motion.div>
               ))}

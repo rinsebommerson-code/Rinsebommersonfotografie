@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -23,40 +24,21 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            {/* Portrait placeholder */}
-            <div
-              className="aspect-[3/4] w-full relative overflow-hidden"
-              style={{
-                background: "linear-gradient(160deg, #2C2518 0%, #1A1A14 60%, #0D0C0A 100%)",
-              }}
-            >
-              {/* Warm glow — suggests portrait lighting */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 40% 35%, rgba(184,146,106,0.25) 0%, transparent 65%)",
-                }}
+            {/* Portrait photo */}
+            <div className="aspect-[3/4] w-full relative overflow-hidden">
+              <Image
+                src="/images/portfolio/Output/Rinse_bommerson 10.jpg"
+                alt="Rinse Bommerson – merkfotograaf"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div
-                className="absolute bottom-0 left-0 right-0 h-1/3"
+                className="absolute bottom-0 left-0 right-0 h-1/4"
                 style={{
-                  background: "linear-gradient(to top, rgba(26,21,18,0.6) 0%, transparent 100%)",
+                  background: "linear-gradient(to top, rgba(26,21,18,0.5) 0%, transparent 100%)",
                 }}
               />
-              {/* Placeholder label */}
-              <div className="absolute bottom-6 left-6">
-                <span
-                  className="text-xs tracking-wider uppercase px-3 py-1.5"
-                  style={{
-                    color: "var(--gold)",
-                    border: "1px solid rgba(184,146,106,0.4)",
-                    fontFamily: "var(--font-dm-sans)",
-                  }}
-                >
-                  Headshot plaatshouder
-                </span>
-              </div>
             </div>
 
             {/* Accent frame */}
