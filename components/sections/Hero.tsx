@@ -18,29 +18,30 @@ export default function Hero() {
       className="relative min-h-screen flex items-end overflow-hidden"
       style={{ backgroundColor: "var(--charcoal)" }}
     >
-      {/* Hero background image */}
+      {/* Hero background image — black & white, positioned right */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/portfolio/Output/Rinse_bommerson Groot 14.jpg"
           alt="Rinse Bommerson Fotografie – merkfotograaf"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover grayscale"
+          style={{ objectPosition: "72% 30%" }}
         />
-        {/* Warm gradient overlay at bottom */}
+        {/* Left-to-right gradient: opaque on text side, open on person side */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(26,21,18,0.95) 0%, rgba(26,21,18,0.55) 45%, rgba(26,21,18,0.15) 100%)",
+              "linear-gradient(to right, rgba(26,21,18,1) 0%, rgba(26,21,18,0.95) 30%, rgba(26,21,18,0.5) 52%, rgba(26,21,18,0.05) 72%, transparent 100%)",
           }}
         />
-        {/* Subtle warm accent on the right */}
+        {/* Bottom grounding gradient */}
         <div
-          className="absolute top-0 right-0 w-1/2 h-full opacity-10"
+          className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at 80% 30%, var(--gold) 0%, transparent 70%)",
+              "linear-gradient(to top, rgba(26,21,18,0.85) 0%, rgba(26,21,18,0.2) 20%, transparent 40%)",
           }}
         />
       </div>
