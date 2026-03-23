@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 type Category = "Alles" | "Personal Brand" | "Team" | "Lifestyle";
 
@@ -34,51 +34,48 @@ function Lightbox({ item, onClose }: { item: PortfolioItem; onClose: () => void 
   }, [onClose]);
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10"
-        style={{ backgroundColor: "rgba(26,21,18,0.92)" }}
-        onClick={onClose}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10"
+      style={{ backgroundColor: "rgba(26,21,18,0.92)" }}
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-4xl w-full"
+        onClick={(e) => e.stopPropagation()}
       >
-        <motion.div
-          initial={{ scale: 0.92, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.92, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="relative max-w-4xl w-full max-h-[90vh]"
-          onClick={(e) => e.stopPropagation()}
+        <div
+          className="relative w-full rounded-sm overflow-hidden"
+          style={{
+            background: item.gradient,
+            aspectRatio: item.aspect === "aspect-square" ? "1 / 1" : item.aspect.replace("aspect-[", "").replace("]", "").replace("/", " / "),
+            maxHeight: "80vh",
+          }}
         >
           <div
-            className="w-full rounded-sm"
-            style={{ background: item.gradient, aspectRatio: item.aspect.replace("aspect-[", "").replace("]", "").replace("/", " / "), minHeight: 320, maxHeight: "80vh" }}
+            className="absolute inset-0 opacity-20"
+            style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(184,146,106,0.4) 0%, transparent 60%)" }}
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 p-8"
+            style={{ background: "linear-gradient(to top, rgba(26,21,18,0.8) 0%, transparent 60%)" }}
           >
-            <div className="absolute inset-0 opacity-20"
-              style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(184,146,106,0.4) 0%, transparent 60%)" }}
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-8"
-              style={{ background: "linear-gradient(to top, rgba(26,21,18,0.8) 0%, transparent 60%)" }}>
-              <span className="text-sm tracking-wider uppercase" style={{ color: "var(--cream)", fontFamily: "var(--font-dm-sans)" }}>
-                {item.label}
-              </span>
-            </div>
+            <span className="text-sm tracking-wider uppercase" style={{ color: "var(--cream)", fontFamily: "var(--font-dm-sans)" }}>
+              {item.label}
+            </span>
           </div>
-          <button
-            onClick={onClose}
-            className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200"
-            style={{ backgroundColor: "var(--gold)", color: "var(--charcoal)" }}
-            aria-label="Sluiten"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+        </div>
+        <button
+          onClick={onClose}
+          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200"
+          style={{ backgroundColor: "var(--gold)", color: "var(--charcoal)" }}
+          aria-label="Sluiten"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
   );
 }
 
