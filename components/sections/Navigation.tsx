@@ -48,7 +48,7 @@ export default function Navigation({ darkHero = true }: NavigationProps) {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="/" aria-label="Rinse Bommerson Fotografie — home">
+        <a href="/" aria-label="Rinse Bommerson Fotografie — home" className="pl-3">
           <Logo variant={isLight ? "light" : "dark"} />
         </a>
 
