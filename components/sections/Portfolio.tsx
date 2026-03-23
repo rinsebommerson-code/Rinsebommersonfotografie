@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 type Category = "Alles" | "Personal Brand" | "Team" | "Lifestyle";
 
@@ -20,8 +20,71 @@ const portfolioItems = [
   { id: 9, cat: "Team", aspect: "aspect-[3/4]", gradient: "linear-gradient(135deg, #182018 0%, #304830 100%)", label: "Team" },
 ];
 
+type PortfolioItem = (typeof portfolioItems)[number];
+
+function Lightbox({ item, onClose }: { item: PortfolioItem; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10"
+        style={{ backgroundColor: "rgba(26,21,18,0.92)" }}
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.92, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.92, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="relative max-w-4xl w-full max-h-[90vh]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div
+            className="w-full rounded-sm"
+            style={{ background: item.gradient, aspectRatio: item.aspect.replace("aspect-[", "").replace("]", "").replace("/", " / "), minHeight: 320, maxHeight: "80vh" }}
+          >
+            <div className="absolute inset-0 opacity-20"
+              style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(184,146,106,0.4) 0%, transparent 60%)" }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-8"
+              style={{ background: "linear-gradient(to top, rgba(26,21,18,0.8) 0%, transparent 60%)" }}>
+              <span className="text-sm tracking-wider uppercase" style={{ color: "var(--cream)", fontFamily: "var(--font-dm-sans)" }}>
+                {item.label}
+              </span>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200"
+            style={{ backgroundColor: "var(--gold)", color: "var(--charcoal)" }}
+            aria-label="Sluiten"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<Category>("Alles");
+  const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -31,6 +94,7 @@ export default function Portfolio() {
       : portfolioItems.filter((item) => item.cat === activeCategory);
 
   return (
+    <>
     <section
       ref={ref}
       id="portfolio"
@@ -97,6 +161,7 @@ export default function Portfolio() {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="break-inside-avoid group relative overflow-hidden cursor-pointer"
+              onClick={() => setSelectedItem(item)}
             >
               <div
                 className={`w-full ${item.aspect}`}
@@ -155,5 +220,10 @@ export default function Portfolio() {
         </motion.div>
       </div>
     </section>
+
+    {selectedItem && (
+      <Lightbox item={selectedItem} onClose={() => setSelectedItem(null)} />
+    )}
+    </>
   );
 }
