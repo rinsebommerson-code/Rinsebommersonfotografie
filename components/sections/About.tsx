@@ -27,7 +27,7 @@ export default function About() {
             {/* Portrait photo */}
             <div className="aspect-[3/4] w-full relative overflow-hidden">
               <Image
-                src="/images/portfolio/Output/Rinse_bommerson 10.jpg"
+                src="/images/portfolio/Output/DSC08579 Groot.jpg"
                 alt="Rinse Bommerson – merkfotograaf"
                 fill
                 className="object-cover object-top"

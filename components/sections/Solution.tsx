@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -48,13 +49,13 @@ const addons = [
 // Two tall portrait photos shown beside the steps on desktop
 const sidePhotos = [
   {
-    gradient: "linear-gradient(160deg, #2C2518 0%, #1A1512 50%, #0D0C0A 100%)",
-    glow: "40% 25%",
-    offset: "0",
+    src: "/images/portfolio/Output/Oogduyne 23.jpg",
+    alt: "Portfolio — Oogduyne shoot",
+    offset: "0px",
   },
   {
-    gradient: "linear-gradient(160deg, #1E2830 0%, #111820 50%, #080E14 100%)",
-    glow: "55% 30%",
+    src: "/images/portfolio/Output/Fashion Shoot 1 Groot 2.jpg",
+    alt: "Portfolio — Fashion shoot",
     offset: "80px",
   },
 ];
@@ -157,21 +158,19 @@ export default function Solution() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.9, delay: 0.3 + i * 0.2 }}
                 className="relative overflow-hidden aspect-[3/4]"
-                style={{
-                  background: photo.gradient,
-                  marginTop: photo.offset,
-                }}
+                style={{ marginTop: photo.offset }}
               >
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `radial-gradient(ellipse at ${photo.glow}, rgba(184,146,106,0.3) 0%, transparent 65%)`,
-                  }}
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover"
+                  sizes="224px"
                 />
-                {/* Gold border accent */}
+                {/* Subtle gold border accent */}
                 <div
-                  className="absolute inset-0 border"
-                  style={{ borderColor: "rgba(184,146,106,0.15)" }}
+                  className="absolute inset-0 border pointer-events-none"
+                  style={{ borderColor: "rgba(184,146,106,0.2)" }}
                 />
               </motion.div>
             ))}
