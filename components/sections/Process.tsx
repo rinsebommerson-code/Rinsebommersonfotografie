@@ -64,7 +64,7 @@ export default function Process() {
             className="text-4xl md:text-5xl leading-tight"
             style={{ fontFamily: "var(--font-playfair)", color: "var(--charcoal)" }}
           >
-            Van beeldanalyse{" "}
+            Van Visuele strategie{" "}
             <em>tot klaar voor gebruik</em>
           </h2>
         </motion.div>
