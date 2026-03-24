@@ -93,7 +93,7 @@ export default function Hero() {
               fontWeight: 300,
             }}
           >
-            Je reis als ondernemer heeft je laten groeien tot wie je nu bent. Het wordt tijd dat jouw foto&apos;s dat ook gaan laten zien.
+            Je reis als ondernemer heeft je laten groeien tot wie je nu bent. Het wordt tijd dat jouw foto&apos;s dat ook gaan laten zien. Een groeiend bedrijf vraagt om een visuele strategie niet losse fotoshoots.
           </motion.p>
 
           {/* CTAs */}
