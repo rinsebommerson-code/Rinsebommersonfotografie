@@ -82,7 +82,7 @@ export default function Problem() {
             className="text-lg leading-relaxed"
             style={{ color: "var(--charcoal-light)", fontFamily: "var(--font-dm-sans)", opacity: 0.8 }}
           >
-            Je omzet groeit, je klanten zijn tevreden en je expertise is er. Je bent hard bezig met de volgende stap om jouw bedrijf verder op te schalen. Maar wie jou online tegenkomt, ziet de oude versie van jou. Je foto&apos;s stralen nog niet uit waar je naar toe groeit met jouw bedrijf.
+            Je omzet groeit, je klanten zijn tevreden en je expertise is er. Je bent hard bezig met de volgende stap om jouw bedrijf verder op te schalen. Maar wie online zoekt, ziet de oude versie van jou. Je foto&apos;s stralen nog niet uit waar je naartoe groeit met jouw bedrijf.
           </p>
         </motion.div>
 
