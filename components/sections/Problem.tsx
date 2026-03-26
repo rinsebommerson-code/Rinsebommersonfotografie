@@ -76,14 +76,13 @@ export default function Problem() {
             style={{ fontFamily: "var(--font-playfair)", color: "var(--charcoal)" }}
           >
             Je bent goed in wat je doet. Maar je foto&apos;s{" "}
-            <em>vertellen dat verhaal nog niet.</em>
+            <em>vertellen jouw verhaal nog niet.</em>
           </h2>
           <p
             className="text-lg leading-relaxed"
             style={{ color: "var(--charcoal-light)", fontFamily: "var(--font-dm-sans)", opacity: 0.8 }}
           >
-            Je omzet groeit, je klanten zijn tevreden, je expertise is er. Maar wie jou online
-            tegenkomt, ziet dat nog niet.
+            Je omzet groeit, je klanten zijn tevreden en je expertise is er. Je bent hard bezig met de volgende stap om jouw bedrijf verder op te schalen. Maar wie jou online tegenkomt, ziet de oude versie van jou. Je foto&apos;s stralen nog niet uit waar je naar toe groeit met jouw bedrijf.
           </p>
         </motion.div>
 
