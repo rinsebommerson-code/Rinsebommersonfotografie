@@ -87,7 +87,7 @@ export default function Navigation({ darkHero = true }: NavigationProps) {
               e.currentTarget.style.color = isLight ? "var(--charcoal)" : "var(--cream)";
             }}
           >
-            Image Consult aanvragen
+            Gratis Beeld Analyse
           </a>
         </nav>
 
@@ -147,7 +147,7 @@ export default function Navigation({ darkHero = true }: NavigationProps) {
                 }}
                 onClick={() => setMenuOpen(false)}
               >
-                Image Consult aanvragen
+                Gratis Beeld Analyse
               </a>
             </nav>
           </motion.div>

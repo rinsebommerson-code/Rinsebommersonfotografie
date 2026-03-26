@@ -119,7 +119,7 @@ export default function Hero() {
                 e.currentTarget.style.backgroundColor = "var(--gold)";
               }}
             >
-              Vraag jouw Image Consult aan
+              Vraag jouw gratis Beeld Analyse aan
               <svg
                 className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
                 fill="none"
