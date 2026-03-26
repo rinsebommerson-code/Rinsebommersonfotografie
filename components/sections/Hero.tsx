@@ -58,7 +58,7 @@ export default function Hero() {
             className="text-xs font-medium tracking-[0.25em] uppercase mb-6"
             style={{ color: "var(--gold)", fontFamily: "var(--font-dm-sans)" }}
           >
-            Professionele visuele strategie en fotografie voor ondernemers
+            Visuele strategie en fotografie voor ondernemers
           </motion.p>
 
           {/* Main headline */}
